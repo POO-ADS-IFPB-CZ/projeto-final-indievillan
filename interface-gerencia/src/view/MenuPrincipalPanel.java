@@ -17,12 +17,10 @@ public class MenuPrincipalPanel extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         JButton btnGestaoFuncionarios = new JButton("Gestão de Funcionários");
-        JButton btnParceiros = new JButton("Parceiros");
         JButton btnGestaoProjetos = new JButton("Gestão de Projetos");
         JButton btnAdministrativo = new JButton("Administrativo");
 
         add(btnGestaoFuncionarios);
-        add(btnParceiros);
         add(btnGestaoProjetos);
         add(btnAdministrativo);
 
