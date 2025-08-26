@@ -2,7 +2,7 @@ package view;
 
 import controller.AppController;
 import model.Funcionario;
-import model.FuncionarioDAO;
+import model.dao.FuncionarioDAO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,8 +16,8 @@ import java.util.List;
 public class AdicionarFuncionarioPanel extends JPanel {
 
     private AppController controller;
-    private JTextField txtCpf, txtNome, txtTelefone, txtDataAdmissao, txtEmail;
-    private JComboBox<String> cmbGenero;
+    private JTextField txtId, txtCpf, txtNome, txtTelefone, txtDataAdmissao, txtEmail;
+    private JComboBox<String> cmbGenero, idDepartamento;
     private JTextArea txtEmails;
 
     public AdicionarFuncionarioPanel(AppController controller) {
@@ -25,14 +25,18 @@ public class AdicionarFuncionarioPanel extends JPanel {
         setLayout(new BorderLayout(10, 10));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        JPanel formPanel = new JPanel(new GridLayout(12, 2, 10, 10));
+        JPanel formPanel = new JPanel(new GridLayout(10, 2, 10, 10));
 
+        txtId = new JTextField();
         txtCpf = new JTextField();
         txtNome = new JTextField();
         txtTelefone = new JTextField();
-        txtDataAdmissao = new JTextField("DD/MM/AAAA");
+        txtDataAdmissao = new JTextField("AAAA-MM-DD");
         cmbGenero = new JComboBox<>(new String[]{"Masculino", "Feminino", "Outro"});
 
+
+        formPanel.add(new JLabel("Matrícula:"));
+        formPanel.add(txtId);
         formPanel.add(new JLabel("CPF:"));
         formPanel.add(txtCpf);
         formPanel.add(new JLabel("Nome:"));
@@ -61,20 +65,20 @@ public class AdicionarFuncionarioPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    // Passa os dados para o controlador.
-                    // A View não sabe como salvar, apenas envia os dados.
                     controller.salvarFuncionario(
+                            Integer.parseInt(txtId.getText()),
                             txtCpf.getText(),
                             cmbGenero.getSelectedItem().toString(),
                             txtNome.getText(),
                             txtTelefone.getText(),
-                            txtDataAdmissao.getText()
+                            txtDataAdmissao.getText(),
+                            0
                     );
 
                     // Limpa os campos após o salvamento
                     limparCampos();
                 } catch (ParseException ex) {
-                    JOptionPane.showMessageDialog(null, "Formato de data inválido. Use DD/MM/AAAA.");
+                    JOptionPane.showMessageDialog(null, "Formato de data inválido. Use AAAA-MM-DD.");
                 }
             }
         });
@@ -88,10 +92,11 @@ public class AdicionarFuncionarioPanel extends JPanel {
     }
 
     private void limparCampos() {
+        txtId.setText("");
         txtCpf.setText("");
         txtNome.setText("");
         txtTelefone.setText("");
-        txtDataAdmissao.setText("DD/MM/AAAA");
+        txtDataAdmissao.setText("AAAA-MM-DD");
         cmbGenero.setSelectedIndex(0);
     }
 }

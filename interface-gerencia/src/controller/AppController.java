@@ -1,7 +1,7 @@
 package controller;
 
 import model.Funcionario;
-import model.FuncionarioDAO;
+import model.dao.FuncionarioDAO;
 import view.AdicionarFuncionarioPanel;
 import view.GestaoFuncionarioMenuPanel;
 import view.MenuPrincipalPanel;
@@ -14,6 +14,7 @@ public class AppController {
 
     private JFrame frame;
     private JTabbedPane tabbedPane;
+    private FuncionarioDAO dao = new FuncionarioDAO();
 
     public AppController() {
         frame = new JFrame("Sistema de Gestão - MVC");
@@ -28,6 +29,7 @@ public class AppController {
         frame.add(tabbedPane);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
     }
 
     // Métodos para gerenciar as visualizações (abas)
@@ -47,16 +49,19 @@ public class AppController {
     }
 
     // Método para salvar um funcionário (interação com o Model)
-    public void salvarFuncionario(String cpf, String genero, String nome, String telefone, String dataAdmissaoStr) throws ParseException {
+    public void salvarFuncionario(Integer id, String cpf, String genero, String nome, String telefone, String dataAdmissaoStr, Integer departamentoId) throws ParseException {
         Funcionario funcionario = new Funcionario(
+                id,
                 cpf,
                 genero,
                 nome,
                 telefone,
-                new SimpleDateFormat("dd/MM/yyyy").parse(dataAdmissaoStr)
+                new SimpleDateFormat("yyyy-MM-dd").parse(dataAdmissaoStr),
+                null,
+                departamentoId
         );
 
-        FuncionarioDAO.salvar(funcionario);
+        dao.save(funcionario);
         JOptionPane.showMessageDialog(null, "Funcionário salvo com sucesso!");
     }
 
