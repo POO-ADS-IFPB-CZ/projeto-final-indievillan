@@ -15,7 +15,6 @@ public class VisualizarFuncionarioPanel extends JPanel {
         setLayout(new GridLayout(10, 2, 10, 10));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        JTextField textField = new JTextField("TABELA DE FUNCIONARIO", 20);
         JButton btnVoltar = new JButton("Voltar");
 
         add(btnVoltar);
