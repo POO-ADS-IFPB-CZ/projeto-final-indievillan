@@ -9,7 +9,6 @@ import view.MenuPrincipalPanel;
 import javax.swing.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
 
 public class AppController {
 
@@ -48,14 +47,13 @@ public class AppController {
     }
 
     // Método para salvar um funcionário (interação com o Model)
-    public void salvarFuncionario(String cpf, String genero, String nome, String telefone, String dataAdmissaoStr, List<String> emails) throws ParseException {
+    public void salvarFuncionario(String cpf, String genero, String nome, String telefone, String dataAdmissaoStr) throws ParseException {
         Funcionario funcionario = new Funcionario(
                 cpf,
                 genero,
                 nome,
                 telefone,
-                new SimpleDateFormat("dd/MM/yyyy").parse(dataAdmissaoStr),
-                emails
+                new SimpleDateFormat("dd/MM/yyyy").parse(dataAdmissaoStr)
         );
 
         FuncionarioDAO.salvar(funcionario);
