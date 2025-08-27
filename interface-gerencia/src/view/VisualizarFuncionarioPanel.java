@@ -42,7 +42,6 @@ public class VisualizarFuncionarioPanel extends JPanel {
         tableModel.setRowCount(0);
         Object[] rowData = {
                 123,
-                "123.456.789-10",
                 "Matheus Argolo",
                 "Outro",
                 "(69)22256-8195",
