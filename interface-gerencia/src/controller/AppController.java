@@ -78,5 +78,9 @@ public class AppController {
         return fdao.findAll();
     }
 
+    public void atualizarFuncionario(Funcionario f){
+        fdao.update(f);
+    }
+
     // Futuras lógicas de buscar, editar e deletar também estariam aqui
 }
