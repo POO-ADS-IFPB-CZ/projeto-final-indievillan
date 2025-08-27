@@ -5,16 +5,18 @@ import model.dao.FuncionarioDAO;
 import view.AdicionarFuncionarioPanel;
 import view.GestaoFuncionarioMenuPanel;
 import view.MenuPrincipalPanel;
+import view.VisualizarFuncionarioPanel;
 
 import javax.swing.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class AppController {
 
     private JFrame frame;
     private JTabbedPane tabbedPane;
-    private FuncionarioDAO dao = new FuncionarioDAO();
+    private FuncionarioDAO fdao = new FuncionarioDAO();
 
     public AppController() {
         frame = new JFrame("Sistema de Gestão - MVC");
@@ -48,6 +50,11 @@ public class AppController {
         tabbedPane.addTab("Adicionar Funcionário", new AdicionarFuncionarioPanel(this));
     }
 
+    public void showVisualizarFuncionarioForm(){
+        tabbedPane.removeAll();
+        tabbedPane.addTab("Ver Funcionários", new VisualizarFuncionarioPanel(this));
+    }
+
     // Método para salvar um funcionário (interação com o Model)
     public void salvarFuncionario(Integer id, String cpf, String genero, String nome, String telefone, String dataAdmissaoStr, Integer departamentoId) throws ParseException {
         Funcionario funcionario = new Funcionario(
@@ -61,8 +68,12 @@ public class AppController {
                 departamentoId
         );
 
-        dao.save(funcionario);
+        fdao.save(funcionario);
         JOptionPane.showMessageDialog(null, "Funcionário salvo com sucesso!");
+    }
+
+    public List<Funcionario> listarFuncionario(){
+        return fdao.findAll();
     }
 
     // Futuras lógicas de buscar, editar e deletar também estariam aqui
