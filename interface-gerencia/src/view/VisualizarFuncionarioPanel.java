@@ -20,7 +20,7 @@ public class VisualizarFuncionarioPanel extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         // Define os cabeçalhos da tabela
-        String[] columnNames = {"ID", "Nome", "Gênero", "Telefone", "Data de Admissão", "Departamento"};
+        String[] columnNames = {"ID", "Nome", "Data de Admissão", "Departamento"};
         tableModel = new DefaultTableModel(columnNames, 0);
         funcionarioTable = new JTable(tableModel);
 
@@ -40,14 +40,19 @@ public class VisualizarFuncionarioPanel extends JPanel {
     private void carregarDadosNaTabela() {
         // Limpa a tabela antes de carregar novos dados
         tableModel.setRowCount(0);
-        Object[] rowData = {
-                123,
-                "Matheus Argolo",
-                "Outro",
-                "(69)22256-8195",
-                "2001-09-11",
-                "0"
-        };
-        tableModel.addRow(rowData);
+
+        // Chama o controlador para obter a lista de funcionários do modelo
+        List<Funcionario> funcionarios = controller.getFuncionarios();
+
+        // Itera sobre a lista e adiciona cada funcionário como uma linha na tabela
+        for (Funcionario f : funcionarios) {
+            Object[] rowData = {
+                    f.getId(), // Assumindo que a classe Funcionario agora tem um getId()
+                    f.getNome(),
+                    f.getDepartamentoId() != 0 ? f.getDepartamentoId() : "N/A",
+                    f.getDataAdmissao()
+            };
+            tableModel.addRow(rowData);
+        }
     }
 }
