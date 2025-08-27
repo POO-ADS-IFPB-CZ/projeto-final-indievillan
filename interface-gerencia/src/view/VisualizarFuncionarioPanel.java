@@ -49,7 +49,7 @@ public class VisualizarFuncionarioPanel extends JPanel {
             Object[] rowData = {
                     f.getId(), // Assumindo que a classe Funcionario agora tem um getId()
                     f.getNome(),
-                    f.getDepartamento() != null ? f.getDepartamento() : "N/A", // Verificação para evitar NullPointer
+                    f.getDepartamentoId() != 0 ? f.getDepartamentoId() : "N/A",
                     f.getDataAdmissao()
             };
             tableModel.addRow(rowData);
