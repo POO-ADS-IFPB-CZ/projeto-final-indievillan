@@ -33,6 +33,13 @@ public class GestaoFuncionarioMenuPanel extends JPanel {
             }
         });
 
+        btnVisualizar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.showVisualizarFuncionarioForm();
+            }
+        });
+
         btnVoltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
