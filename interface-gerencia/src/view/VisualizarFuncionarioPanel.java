@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.*;
+import java.util.List;
 
 public class VisualizarFuncionarioPanel extends JPanel {
     private AppController controller;
@@ -42,15 +43,15 @@ public class VisualizarFuncionarioPanel extends JPanel {
         tableModel.setRowCount(0);
 
         // Chama o controlador para obter a lista de funcionários do modelo
-        List<Funcionario> funcionarios = controller.getFuncionarios();
+        List<Funcionario> funcionarios = controller.listarFuncionario();
 
         // Itera sobre a lista e adiciona cada funcionário como uma linha na tabela
         for (Funcionario f : funcionarios) {
             Object[] rowData = {
                     f.getId(), // Assumindo que a classe Funcionario agora tem um getId()
                     f.getNome(),
-                    f.getDepartamentoId() != 0 ? f.getDepartamentoId() : "N/A",
-                    f.getDataAdmissao()
+                    f.getDataAdmissao(),
+                    f.getDepartamentoId() != 0 ? f.getDepartamentoId() : "N/A"
             };
             tableModel.addRow(rowData);
         }

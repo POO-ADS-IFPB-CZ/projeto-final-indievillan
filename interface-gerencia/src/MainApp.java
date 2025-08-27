@@ -32,7 +32,6 @@ public class MainApp {
         }
 
         // Adiciona a nova aba e seleciona ela
-        tabbedPane.addTab(title, panel);
         tabbedPane.setSelectedComponent(panel);
     }
 

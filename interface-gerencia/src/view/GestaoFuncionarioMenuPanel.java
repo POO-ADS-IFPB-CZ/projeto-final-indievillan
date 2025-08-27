@@ -40,6 +40,13 @@ public class GestaoFuncionarioMenuPanel extends JPanel {
             }
         });
 
+        btnEditar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.showEditarFuncionarioForm();
+            }
+        });
+
         btnVoltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

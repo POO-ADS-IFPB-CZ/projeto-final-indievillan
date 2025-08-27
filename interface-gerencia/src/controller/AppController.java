@@ -2,10 +2,7 @@ package controller;
 
 import model.Funcionario;
 import model.dao.FuncionarioDAO;
-import view.AdicionarFuncionarioPanel;
-import view.GestaoFuncionarioMenuPanel;
-import view.MenuPrincipalPanel;
-import view.VisualizarFuncionarioPanel;
+import view.*;
 
 import javax.swing.*;
 import java.text.ParseException;
@@ -53,6 +50,11 @@ public class AppController {
     public void showVisualizarFuncionarioForm(){
         tabbedPane.removeAll();
         tabbedPane.addTab("Ver Funcionários", new VisualizarFuncionarioPanel(this));
+    }
+
+    public void showEditarFuncionarioForm(){
+        tabbedPane.removeAll();
+        tabbedPane.addTab("Editar Funcionários", new EditarFuncionarioPanel(this));
     }
 
     // Método para salvar um funcionário (interação com o Model)
